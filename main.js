@@ -21,7 +21,8 @@ function createWindow () {
 
   Menu.setApplicationMenu(mainMenu)
 
-  // mainWindow.webContents.openDevTools()
+
+
 
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
@@ -54,6 +55,10 @@ function openAddWindow() {
     protocol: 'file:',
     slashes: true
   }))
+
+  addWindow.on('closed', function () {
+    addWindow = null
+  })
 }
 
 const menuTemplate = [
@@ -80,3 +85,25 @@ const menuTemplate = [
     ]
   }
 ]
+
+if (process.platform == 'darwin') {
+  menuTemplate.unshift({})
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  menuTemplate.push({
+    label: 'Dev Tools',
+    submenu: [
+      {
+        label: 'Toggle Dev Tools',
+        accelerator: process.platform == 'darwin' ? 'Command+Shift+I' : 'Ctrl+Shift+I',
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools()
+        }
+      },
+      {
+        role: 'reload'
+      }
+    ]
+  })
+}
