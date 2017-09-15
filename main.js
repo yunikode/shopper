@@ -1,6 +1,6 @@
 const electron = require('electron')
 
-const {app, BrowserWindow, Menu} = electron
+const {app, BrowserWindow, Menu, ipcMain} = electron
 
 const path = require('path')
 const url = require('url')
@@ -21,9 +21,6 @@ function createWindow () {
 
   Menu.setApplicationMenu(mainMenu)
 
-
-
-
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
@@ -32,6 +29,13 @@ function createWindow () {
     mainWindow = null
   })
 }
+
+ipcMain.on('item:add', function (e, item) {
+  if (item.length != 0) {
+    mainWindow.webContents.send('item:add', item)
+  }
+  addWindow.close()
+})
 
 app.on('ready', createWindow)
 
@@ -48,7 +52,7 @@ app.on('activate', function () {
 })
 
 function openAddWindow() {
-  addWindow = new BrowserWindow({width: 300, height: 200})
+  addWindow = new BrowserWindow({width: 300, height: 200, frame:false})
 
   addWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'add.html'),
@@ -73,7 +77,10 @@ const menuTemplate = [
         }
       },
       {
-        label: 'Clear Item'
+        label: 'Clear Item',
+        click() {
+          mainWindow.webContents.send('item:clear')
+        }
       },
       {
         label: 'Quit',
