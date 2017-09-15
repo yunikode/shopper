@@ -1,0 +1,20 @@
+{
+  "name": "shopper",
+  "version": "0.1.0",
+  "description": "A minimal shopping list",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/zee-german/shopper",
+  "keywords": [
+    "Electron",
+    "shopping list",
+    "list"
+  ],
+  "author": "zee-german",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
