@@ -4,19 +4,85 @@
     <meta charset="UTF-8">
     <title>Shopper</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
+      body {
+        position: relative;
+      }
       .done {
         text-decoration: line-through;
         color: lightgrey;
       }
+      #help-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        /*color: white;*/
+        background: rgba(255, 255, 255, 0.85);
+        z-index: 1000;
+      }
+      .top-row {
+        display: flex;
+      }
+      .top-row h1 {
+        flex-grow: 1;
+      }
+      .no-show {
+        display: none;
+      }
+      kbd
+{
+    -moz-border-radius:3px;
+    -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    -webkit-border-radius:3px;
+    -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    background-color:#f7f7f7;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+    color:#333;
+    display:inline-block;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:11px;
+    line-height:1.4;
+    margin:0 .1em;
+    padding:.1em .6em;
+    text-shadow:0 1px 0 #fff;
+}
     </style>
+    <script type="text/javascript">
+      const electron = require('electron')
+      const ipc = electron.ipcRenderer
+      document.addEventListener('DOMContentLoaded', function() {
+        ipc.send('mainWindowLoaded')
+      })
+    </script>
 
   </head>
   <body>
+    <div id="help-screen" class="no-show">
+      <div class="container">
+        <div class="top-row">
+          <h1 id="head">Help</h1>
+          <span class="right"><a href="" class="btn-flat" id="close-btn"><i class="material-icons">cancel</i></a></span>
+        </div>
+        <p>To add items to the list click the 'pencil' button or press <kbd>Ctrl</kbd> + <kbd>I</kbd>.</p>
+        <p>To mark an item as completed click on it.</p>
+        <p>To delete an item from the list double-click it.</p>
+        <p>To delete all items on the list press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd>.</p>
+      </div>
+    </div>
     <nav class="nav-wrapper"><a href="" class="brand-logo center">Shopping List</a></nav>
     <ul id="item-list">
 
     </ul>
+    <div class="fixed-action-btn horizontal click-to-toggle">
+      <a class="btn-floating btn-large red" id="add-button">
+        <i class="material-icons">create</i>
+      </a>
+    </div>
   </body>
 
   <script>

@@ -15,6 +15,12 @@
   "author": "zee-german",
   "license": "MIT",
   "devDependencies": {
-    "electron": "~1.7.6"
+    "electron": "~1.7.6",
+    "electron-rebuild": "^1.6.0"
+  },
+  "dependencies": {
+    "leveldown": "^1.8.0",
+    "pouchdb": "^6.3.4",
+    "pouchdb-find": "^6.3.4"
   }
 }
