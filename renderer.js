@@ -12,7 +12,7 @@ if (form !== null) {
 
 if (list !== null) {
   add_btn.addEventListener('click', openForm)
-  close_btn.addEventListener('click', function (e) {
+  close_btn.addEventListener('click', function(e) {
     e.preventDefault()
     toggleShow()
   })
@@ -40,8 +40,6 @@ ipcRenderer.on('app:ready', (event, message) => {
 
 ipcRenderer.on('list:repopulate', (e, payload) => {
   let i = payload.rows.length
-  console.log('redraw requested')
-  // console.log(i)
 
   list.innerHTML = ''
 
@@ -57,13 +55,12 @@ ipcRenderer.on('list:repopulate', (e, payload) => {
 
 })
 
-
-ipcRenderer.on('item:clear', function () {
+ipcRenderer.on('item:clear', function() {
   list.innerHTML = ''
   list.classList.toggle('collection')
 })
 
-ipcRenderer.on('help:show', function () {
+ipcRenderer.on('help:show', function() {
   toggleShow()
 })
 

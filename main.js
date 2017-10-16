@@ -65,9 +65,6 @@ ipcMain.on('item:add', function(e, item) {
     completed: false
   }
   db.put(_item, function cb(err, res) {
-    if (!err) {
-      console.log('Successfully added item!')
-    }
   })
 
   refreshItems()
@@ -88,7 +85,6 @@ function refreshItems() {
 app.on('ready', () => {
   createWindow()
   ipcMain.on('mainWindowLoaded', () => {
-    console.log('DOMReady')
     refreshItems()
   })
 })

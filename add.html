@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Add Item</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <style media="screen">
-      button {
-        -webkit-app-region: no-drag;
-      }
-    </style>
 
-  </head>
-  <body style="-webkit-app-region: drag">
-    <div class="container">
-      <form>
-        <div>
-          <label>Enter Item</label>
-          <input type="text" id="item" autofocus>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit">add Item</button>
-      </form>
-    </div>
-  </body>
-
-  <script type="text/javascript">
-    window.onblur = function() {
-      window.close()
+<head>
+  <meta charset="UTF-8">
+  <title>Add Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <style media="screen">
+    button {
+      -webkit-app-region: no-drag;
     }
-  </script>
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+  </style>
+
+</head>
+
+<body style="-webkit-app-region: drag">
+  <div class="container">
+    <form>
+      <div>
+        <label>Enter Item</label>
+        <input type="text" id="item" autofocus>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">add Item</button>
+    </form>
+  </div>
+</body>
+
+<script type="text/javascript">
+  window.onblur = function() {
+    window.close()
+  }
+</script>
+<script>
+  // You can also require other files to run in this process
+  require('./renderer.js')
+</script>
+
 </html>
