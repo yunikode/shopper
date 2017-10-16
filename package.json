@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "description": "A minimal shopping list",
   "main": "main.js",
+  "build": {
+    "appId": "com.digitaldiztortion.shopper"
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/zee-german/shopper",
   "keywords": [
@@ -16,6 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "~1.7.6",
+    "electron-builder": "^19.37.2",
     "electron-rebuild": "^1.6.0"
   },
   "dependencies": {
