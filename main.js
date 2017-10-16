@@ -75,6 +75,10 @@ ipcMain.on('item:add', function(e, item) {
   addWindow.close()
 })
 
+ipcMain.on('close:add', function() {
+  addWindow.close()
+})
+
 function refreshItems() {
   db.allDocs({include_docs: true, attachments: true}).then(items => {
     mainWindow.webContents.send('list:repopulate', items)
@@ -100,6 +104,7 @@ app.on('activate', function() {
     createWindow()
   }
 })
+
 
 function openAddWindow() {
   addWindow = new BrowserWindow({width: 300, height: 200, frame: false})

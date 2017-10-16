@@ -1,11 +1,11 @@
 const electron = require('electron')
 const {ipcRenderer} = electron
 
-
 const add_btn = document.querySelector('#add-button')
 const close_btn = document.getElementById('close-btn')
 const form = document.querySelector('form')
 const list = document.querySelector('#item-list')
+
 if (form !== null) {
   form.addEventListener('submit', submitForm)
 }
@@ -25,6 +25,8 @@ function submitForm(e) {
   const item = document.querySelector('#item').value.trim()
   if (item.length != 0) {
     ipcRenderer.send('item:add', item)
+  } else {
+    ipcRenderer.send('close:add')
   }
 }
 
