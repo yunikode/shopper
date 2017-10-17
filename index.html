@@ -10,11 +10,12 @@
   <style media="screen">
     body {
       position: relative;
+      background: url('./paper.jpg');
     }
 
     .done {
       text-decoration: line-through;
-      color: lightgrey;
+      color: crimson;
     }
 
     #help-screen {
@@ -50,6 +51,15 @@
       display: none;
     }
 
+    .collection {
+      border: none;
+    }
+
+    .collection .collection-item {
+      background-color: transparent;
+      border-bottom: none;
+    }
+
     kbd {
       -moz-border-radius: 3px;
       -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
@@ -67,6 +77,13 @@
       margin: 0 .1em;
       padding: .1em .6em;
       text-shadow: 0 1px 0 #fff;
+    }
+    nav {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    nav .brand-logo {
+      color: midnightblue;
     }
   </style>
   <script type="text/javascript">
@@ -92,7 +109,7 @@
       <p>To delete all items on the list press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd>.</p>
     </div>
   </div>
-  <nav class="nav-wrapper"><a href="" class="brand-logo center">Shopping List</a></nav>
+  <nav class="nav-wrapper"><a href="#" class="brand-logo center">Shopping List</a></nav>
   <ul id="item-list">
 
   </ul>

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "NODE_ENV=production electron-builder"
   },
   "repository": "https://github.com/zee-german/shopper",
   "keywords": [
@@ -21,8 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "~1.7.6",
-    "electron-builder": "^19.37.2",
-    "electron-rebuild": "^1.6.0"
+    "electron-builder": "^19.37.2"
   },
   "dependencies": {
     "leveldown": "^1.8.0",

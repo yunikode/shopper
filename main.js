@@ -158,22 +158,3 @@ const menuTemplate = [
 if (process.platform == 'darwin') {
   menuTemplate.unshift({})
 }
-
-if (process.env.NODE_ENV !== 'production') {
-  menuTemplate.push({
-    label: 'Dev Tools',
-    submenu: [
-      {
-        label: 'Toggle Dev Tools',
-        accelerator: process.platform == 'darwin'
-          ? 'Command+Shift+I'
-          : 'Ctrl+Shift+I',
-        click(item, focusedWindow) {
-          focusedWindow.toggleDevTools()
-        }
-      }, {
-        role: 'reload'
-      }
-    ]
-  })
-}
