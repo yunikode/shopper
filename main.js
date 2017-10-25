@@ -57,6 +57,34 @@ ipcMain.on('item:delete', (e, item) => {
 
 })
 
+ipcMain.on('item:toggle', (e, item) => {
+  db.find({
+    selector: {
+      title: {
+        $eq: item
+      }
+    }
+  }).then(function(res) {
+    for (var i = 0; i < res.docs.length; i++) {
+      let id = res.docs[i]._id
+      db.get(id).then(function(doc) {
+        let toggled = !doc.completed
+        console.log(doc)
+        console.log(toggled)
+        return db.put({
+          _id: id,
+          _rev: doc._rev,
+          completed: toggled,
+          title: doc.title
+        })
+
+      }).then( () => refreshItems())
+    }
+  }).catch(err => console.log(err))
+
+})
+
+
 ipcMain.on('item:add', function(e, item) {
 
   let _item = {
@@ -157,4 +185,23 @@ const menuTemplate = [
 
 if (process.platform == 'darwin') {
   menuTemplate.unshift({})
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  menuTemplate.push({
+    label: 'Dev Tools',
+    submenu: [
+      {
+        label: 'Toggle Dev Tools',
+        accelerator: process.platform == 'darwin'
+          ? 'Command+Shift+I'
+          : 'Ctrl+Shift+I',
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools()
+        }
+      }, {
+        role: 'reload'
+      }
+    ]
+  })
 }

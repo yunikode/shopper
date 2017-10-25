@@ -5,6 +5,7 @@ const add_btn = document.querySelector('#add-button')
 const close_btn = document.getElementById('close-btn')
 const form = document.querySelector('form')
 const list = document.querySelector('#item-list')
+// const btn = document.querySelector('.delete-btn')
 
 if (form !== null) {
   form.addEventListener('submit', submitForm)
@@ -16,7 +17,7 @@ if (list !== null) {
     e.preventDefault()
     toggleShow()
   })
-  list.addEventListener('dblclick', removeItem)
+  // btn.addEventListener('click', removeItem)
   list.addEventListener('click', toggleItem)
 }
 
@@ -48,8 +49,18 @@ ipcRenderer.on('list:repopulate', (e, payload) => {
     list.className = 'collection'
     let li = document.createElement('li')
     li.className = 'collection-item'
+    if (payload.rows[item].doc.completed == true) {
+      li.classList.add('completed')
+    } else {
+      li.classList.remove('completed')
+    }
     let text = document.createTextNode(payload.rows[item].doc.title)
     li.appendChild(text)
+    let btn = document.createElement('span')
+    btn.className = 'delete-btn'
+    btn.appendChild(document.createTextNode('X'))
+    btn.addEventListener('click', removeItem)
+    li.appendChild(btn)
     list.appendChild(li)
   }
 
@@ -69,11 +80,12 @@ function toggleShow(e) {
 }
 
 function toggleItem(e) {
-  e.target.classList.toggle('done')
+  let _item = e.target.textContent.slice(0,-1)
+  ipcRenderer.send('item:toggle', _item)
 }
 
 function removeItem(e) {
-  let _item = e.target.innerHTML
+  let _item = e.target.parentNode.textContent.slice(0, -1)
   ipcRenderer.send('item:delete', _item)
   if (list.innerHTML.trim().length == 0) {
     list.classList.toggle('collection')
