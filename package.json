@@ -19,13 +19,11 @@
   ],
   "author": "zee-german",
   "license": "MIT",
-  "devDependencies": {
-    "electron": "~1.7.6",
-    "electron-builder": "^19.37.2"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "leveldown": "^1.8.0",
-    "pouchdb": "^6.3.4",
-    "pouchdb-find": "^6.3.4"
+    "electron": "^1.8.3",
+    "leveldown": "^3.0.0",
+    "pouchdb": "^6.4.3",
+    "pouchdb-find": "^6.4.3"
   }
 }
